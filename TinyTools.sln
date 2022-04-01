@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LambdaHelper", "LambdaHelper\LambdaHelper.csproj", "{6EE8775B-995E-478A-8F1F-D81C4ED06A5D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passworder", "Passworder\Passworder.csproj", "{D9B20F01-8C6F-4F65-9FDC-989BE3137752}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Password", "Password", "{DD1CE1C0-90B9-45E3-AD4D-11B93D376AD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Passworder.Tests", "Passworder.Tests\Passworder.Tests.csproj", "{21E6D9AE-6DE7-4BF3-9FC1-F29E3C1979ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EE8775B-995E-478A-8F1F-D81C4ED06A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EE8775B-995E-478A-8F1F-D81C4ED06A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EE8775B-995E-478A-8F1F-D81C4ED06A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EE8775B-995E-478A-8F1F-D81C4ED06A5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9B20F01-8C6F-4F65-9FDC-989BE3137752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9B20F01-8C6F-4F65-9FDC-989BE3137752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9B20F01-8C6F-4F65-9FDC-989BE3137752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9B20F01-8C6F-4F65-9FDC-989BE3137752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21E6D9AE-6DE7-4BF3-9FC1-F29E3C1979ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21E6D9AE-6DE7-4BF3-9FC1-F29E3C1979ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21E6D9AE-6DE7-4BF3-9FC1-F29E3C1979ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21E6D9AE-6DE7-4BF3-9FC1-F29E3C1979ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D9B20F01-8C6F-4F65-9FDC-989BE3137752} = {DD1CE1C0-90B9-45E3-AD4D-11B93D376AD4}
+		{21E6D9AE-6DE7-4BF3-9FC1-F29E3C1979ED} = {DD1CE1C0-90B9-45E3-AD4D-11B93D376AD4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {730655F4-3F3A-49DF-A09E-789AE09D8A91}
+	EndGlobalSection
+EndGlobal
