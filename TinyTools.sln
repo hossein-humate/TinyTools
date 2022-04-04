@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passworder.Tests", "Passwor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lambda", "Lambda", "{10F03E91-1682-49EA-86C1-746E75821CDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaHelper.Tests", "LambdaHelper.Tests\LambdaHelper.Tests.csproj", "{A9F026E8-4F9D-4D24-8585-6763722FFB30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{21E6D9AE-6DE7-4BF3-9FC1-F29E3C1979ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21E6D9AE-6DE7-4BF3-9FC1-F29E3C1979ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21E6D9AE-6DE7-4BF3-9FC1-F29E3C1979ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9F026E8-4F9D-4D24-8585-6763722FFB30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9F026E8-4F9D-4D24-8585-6763722FFB30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9F026E8-4F9D-4D24-8585-6763722FFB30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9F026E8-4F9D-4D24-8585-6763722FFB30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{6EE8775B-995E-478A-8F1F-D81C4ED06A5D} = {10F03E91-1682-49EA-86C1-746E75821CDF}
 		{D9B20F01-8C6F-4F65-9FDC-989BE3137752} = {DD1CE1C0-90B9-45E3-AD4D-11B93D376AD4}
 		{21E6D9AE-6DE7-4BF3-9FC1-F29E3C1979ED} = {DD1CE1C0-90B9-45E3-AD4D-11B93D376AD4}
+		{A9F026E8-4F9D-4D24-8585-6763722FFB30} = {10F03E91-1682-49EA-86C1-746E75821CDF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {730655F4-3F3A-49DF-A09E-789AE09D8A91}
