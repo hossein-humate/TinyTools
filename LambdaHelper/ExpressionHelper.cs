@@ -16,7 +16,8 @@ namespace LambdaHelper
     // |&filter=prop gt 2               |     x => x.prop < 2                |
     // |&filter=prop le 2               |     x => x.prop >= 2               |
     // |&filter=prop ge 2               |     x => x.prop <= 2               |
-    // |&filter=prop cn Humate         |     x => x.prop.Contains("Humate")|
+    // |&filter=prop cn Hossein         |     x => x.prop.Contains("Hossein")|
+    // |&filter=prop cn 'John D'        |     x => x.prop.Contains("John D") |
     // |&filter=prop.nest eq 2          |     x => x.prop.nest == 2          |
     // |---------------------------------------------------------------------|
 
@@ -29,7 +30,7 @@ namespace LambdaHelper
     // |&orderby=prop desc              |     source.OrderByDescending(x => x.prop) |
     // |----------------------------------------------------------------------------|
     /// <summary>
-    /// Exention class to provide Expression helper for Filter or Sort Order operation and Query on <see cref="T"/> Entity.
+    /// Exention class to provide Expression helper for Filter or Sort Order operation and Query.
     /// </summary>
     public class ExpressionHelper
     {
@@ -56,14 +57,14 @@ namespace LambdaHelper
         /// Extract a Lambda Expression from filter query
         /// To see the valid filter check this filter value below and consider the <see cref="T"/>
         /// generic type for Organisation model:
-        /// filter = "Name cn Humate _Or  gt 20 _Or Size lt 70 _And BillingEmail eq test@test.com _And Size gt 20 _Or OrganisationId eq 1"
+        /// filter = "Name cn Hossein _Or  gt 20 _Or Size lt 70 _And BillingEmail eq test@test.com _And Size gt 20 _Or OrganisationId eq 1"
         /// <br/><br/>
-        /// The filter query started with 'Name' as parameter and use 'cn' as function to find 'Humate' as value. 
-        /// The first part of the filter query compile as C# Lambda: <code>x => x.Name.Contains("Humate")</code>
+        /// The filter query started with 'Name' as parameter and use 'cn' as function to find 'Hossein' as value. 
+        /// The first part of the filter query compile as C# Lambda: <code>x => x.Name.Contains("Hossein")</code>
         /// The second part of the filter query compile as C# Lambda: <code>x => x.Size > 20</code>
         /// Consider the first part as A and second one as B, to apply multiple conditional filter you need to use
         /// '_And' or '_Or' keywords beetwen A and B query parts.
-        /// For example A _Or B Compile as:<code>x => x.Name.Contains("Humate") || x.Size > 20 </code>
+        /// For example A _Or B Compile as:<code>x => x.Name.Contains("Hossein") || x.Size > 20 </code>
         /// </summary>
         /// <param name="filter">Represent the Filter query on each and every parameters of <see cref="T"/> generic type</param>
         /// <remarks>
@@ -178,7 +179,7 @@ namespace LambdaHelper
                 {
                     var parts = properties[0].Split(' ');
                     var propertyInfo = typeof(T).GetProperty(parts[0].ToLower(), BindingFlags.IgnoreCase
-                            | BindingFlags.Public | BindingFlags.Instance);
+                           | BindingFlags.Public | BindingFlags.Instance);
                     if (propertyInfo == null)
                     {
                         throw new Exception("Cannot process your OrderBy query.");
@@ -209,13 +210,31 @@ namespace LambdaHelper
         {
             try
             {
-                // FilerQuery contain for example: Firstname eq Humate
-                var filterParts = filterQuery.Trim().Split(' ');
-                if (filterParts.Length != 3)
-                    throw new Exception("Filter expression is not correct.");
-                var propertyName = filterParts[0];
-                var conditionalOperator = filterParts[1];
-                var constantvalue = filterParts[2];
+                string propertyName, conditionalOperator, constantvalue;
+                if (filterQuery.Trim().Contains("'"))
+                {
+                    // FilerQuery contain for example: FullName cn 'Hossein SB'
+                    var quotes = filterQuery.Substring(filterQuery.IndexOf("'"), filterQuery.LastIndexOf("'") - filterQuery.IndexOf("'") + 1);
+                    var propertyAndOperator = filterQuery.Trim().Split(quotes);
+                    if (propertyAndOperator.Length != 2)
+                        throw new Exception("String value in filter expression has not correct format.");
+                    var filterParts = propertyAndOperator[0].Trim().Split(' ');
+                    if (filterParts.Length != 2)
+                        throw new Exception("Filter expression is not correct.");
+                    propertyName = filterParts[0];
+                    conditionalOperator = filterParts[1];
+                    constantvalue = quotes[1..quotes.LastIndexOf("'")];
+                }
+                else
+                {
+                    // FilerQuery contain for example: Firstname eq Hossein
+                    var filterParts = filterQuery.Trim().Split(' ');
+                    if (filterParts.Length != 3)
+                        throw new Exception("Filter expression is not correct.");
+                    propertyName = filterParts[0];
+                    conditionalOperator = filterParts[1];
+                    constantvalue = filterParts[2];
+                }
 
                 //Catch nested Entity as parameter in query
                 string[] nestedProps = propertyName.Split('.');
@@ -256,7 +275,7 @@ namespace LambdaHelper
             }
         }
 
-        private ConstantExpression GetConstantExpression(PropertyInfo propInfo, string constantvalue)
+        private static ConstantExpression GetConstantExpression(PropertyInfo propInfo, string constantvalue)
         {
             try
             {
@@ -306,7 +325,7 @@ namespace LambdaHelper
             }
         }
 
-        private BinaryExpression GetBinaryExpression(
+        private static BinaryExpression GetBinaryExpression(
             Expression property,
             ConstantExpression constant,
             PropertyInfo propInfo,
@@ -349,7 +368,7 @@ namespace LambdaHelper
             return expression;
         }
 
-        private PropertyInfo GetPropertyInfo(Type type, string propertyName)
+        private static PropertyInfo GetPropertyInfo(Type type, string propertyName)
         {
             return type.GetProperty(propertyName, BindingFlags.IgnoreCase |
                             BindingFlags.Public | BindingFlags.Instance)
